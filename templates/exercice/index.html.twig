@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des exercices{% endblock %}
+
+{% block body %}
+    <main>
+        <h1>Liste des exercices</h1>
+
+        {% if exercices is empty %}
+            <p>Aucun exercice n’est enregistré pour le moment.</p>
+        {% else %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Groupement</th>
+                        <th>Début</th>
+                        <th>Fin</th>
+                        <th>Date limite des prêts</th>
+                        <th>Rétribution</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for exercice in exercices %}
+                        <tr>
+                            <td>{{ exercice.groupement.nom }}</td>
+                            <td>{{ exercice.dateDebut|date('d/m/Y') }}</td>
+                            <td>{{ exercice.dateFin|date('d/m/Y') }}</td>
+                            <td>{{ exercice.dateLimitePrets|date('d/m/Y') }}</td>
+                            <td>{{ exercice.dateRetribution|date('d/m/Y') }}</td>
+                            <td>{{ exercice.statut.value|replace({'_': ' '}) }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </main>
+{% endblock %}
