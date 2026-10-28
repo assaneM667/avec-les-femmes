@@ -16,8 +16,8 @@ class Groupement
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $montant = null;
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
@@ -41,16 +41,16 @@ class Groupement
         return $this->id;
     }
 
-    public function getMontant(): ?string
+    public function getNom(): ?string
     {
-        return $this->montant;
+    return $this->nom;
     }
 
-    public function setMontant(string $montant): static
+    public function setNom(string $nom): static
     {
-        $this->montant = $montant;
+    $this->nom = $nom;
 
-        return $this;
+    return $this;
     }
 
     public function getAdresse(): ?string
