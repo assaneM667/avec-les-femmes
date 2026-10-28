@@ -1,0 +1,96 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\ExerciceRepository;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: ExerciceRepository::class)]
+class Exercice
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTime $dateDebut = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTime $dateFin = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTime $dateLimitePrets = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTime $dateRetribution = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $statut = null;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getDateDebut(): ?\DateTime
+    {
+        return $this->dateDebut;
+    }
+
+    public function setDateDebut(\DateTime $dateDebut): static
+    {
+        $this->dateDebut = $dateDebut;
+
+        return $this;
+    }
+
+    public function getDateFin(): ?\DateTime
+    {
+        return $this->dateFin;
+    }
+
+    public function setDateFin(\DateTime $dateFin): static
+    {
+        $this->dateFin = $dateFin;
+
+        return $this;
+    }
+
+    public function getDateLimitePrets(): ?\DateTime
+    {
+        return $this->dateLimitePrets;
+    }
+
+    public function setDateLimitePrets(\DateTime $dateLimitePrets): static
+    {
+        $this->dateLimitePrets = $dateLimitePrets;
+
+        return $this;
+    }
+
+    public function getDateRetribution(): ?\DateTime
+    {
+        return $this->dateRetribution;
+    }
+
+    public function setDateRetribution(\DateTime $dateRetribution): static
+    {
+        $this->dateRetribution = $dateRetribution;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): static
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+}
