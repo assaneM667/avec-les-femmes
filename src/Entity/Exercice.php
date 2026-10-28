@@ -29,6 +29,10 @@ class Exercice
     #[ORM\Column(length: 20)]
     private ?string $statut = null;
 
+    #[ORM\ManyToOne(inversedBy: 'exercices')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Groupement $groupement = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,5 +96,17 @@ class Exercice
         $this->statut = $statut;
 
         return $this;
+    }
+
+    public function getGroupement(): ?Groupement
+    {
+        return $this->groupement;
+    }
+
+    public function setGroupement(Groupement $groupement): static
+    {
+    $this->groupement = $groupement;
+
+    return $this;
     }
 }
