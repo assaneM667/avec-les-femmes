@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use App\Enum\StatutExercice;
 use App\Repository\ExerciceRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -26,8 +26,8 @@ class Exercice
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTime $dateRetribution = null;
 
-    #[ORM\Column(length: 20)]
-    private ?string $statut = null;
+    #[ORM\Column(enumType: StatutExercice::class)]
+    private ?StatutExercice $statut = null;
 
     #[ORM\ManyToOne(inversedBy: 'exercices')]
     #[ORM\JoinColumn(nullable: false)]
@@ -86,16 +86,16 @@ class Exercice
         return $this;
     }
 
-    public function getStatut(): ?string
+    public function getStatut(): ?StatutExercice
     {
-        return $this->statut;
+    return $this->statut;
     }
 
-    public function setStatut(string $statut): static
+    public function setStatut(StatutExercice $statut): static
     {
-        $this->statut = $statut;
+    $this->statut = $statut;
 
-        return $this;
+    return $this;
     }
 
     public function getGroupement(): ?Groupement
