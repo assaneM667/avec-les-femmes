@@ -1,38 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des exercices{% endblock %}
+{% block title %}Exercices | Avec les femmes{% endblock %}
 
 {% block body %}
-    <main>
-        <h1>Liste des exercices</h1>
+    <main class="page-container">
+        <header class="page-heading">
+            <div>
+                <p class="eyebrow">Suivi annuel</p>
+                <h1>Les exercices</h1>
+                <p class="page-lead">Consultez les périodes, échéances et statuts des exercices.</p>
+            </div>
+            <span class="count-pill">{{ exercices|length }} exercice{{ exercices|length > 1 ? 's' : '' }}</span>
+        </header>
 
         {% if exercices is empty %}
-            <p>Aucun exercice n’est enregistré pour le moment.</p>
+            <div class="empty-state">
+                <span class="empty-icon" aria-hidden="true">EX</span>
+                <h2>Aucun exercice pour le moment</h2>
+                <p>Les exercices enregistrés apparaîtront ici.</p>
+            </div>
         {% else %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Groupement</th>
-                        <th>Début</th>
-                        <th>Fin</th>
-                        <th>Date limite des prêts</th>
-                        <th>Rétribution</th>
-                        <th>Statut</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for exercice in exercices %}
-                        <tr>
-                            <td>{{ exercice.groupement.nom }}</td>
-                            <td>{{ exercice.dateDebut|date('d/m/Y') }}</td>
-                            <td>{{ exercice.dateFin|date('d/m/Y') }}</td>
-                            <td>{{ exercice.dateLimitePrets|date('d/m/Y') }}</td>
-                            <td>{{ exercice.dateRetribution|date('d/m/Y') }}</td>
-                            <td>{{ exercice.statut.value|replace({'_': ' '}) }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="table-card">
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr><th>Groupement</th><th>Début</th><th>Fin</th><th>Date limite des prêts</th><th>Rétribution</th><th>Statut</th></tr>
+                        </thead>
+                        <tbody>
+                            {% for exercice in exercices %}
+                                <tr>
+                                    <td class="strong-cell">{{ exercice.groupement.nom }}</td>
+                                    <td>{{ exercice.dateDebut|date('d/m/Y') }}</td>
+                                    <td>{{ exercice.dateFin|date('d/m/Y') }}</td>
+                                    <td>{{ exercice.dateLimitePrets|date('d/m/Y') }}</td>
+                                    <td>{{ exercice.dateRetribution|date('d/m/Y') }}</td>
+                                    <td><span class="status-badge {{ exercice.statut.value == 'EN_COURS' ? 'status-active' : 'status-closed' }}">{{ exercice.statut.value|replace({'_': ' '}) }}</span></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         {% endif %}
     </main>
 {% endblock %}

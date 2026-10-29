@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Groupements | Avec les femmes{% endblock %}
+
+{% block body %}
+    <main class="page-container">
+        <header class="page-heading">
+            <div><p class="eyebrow">Organisation</p><h1>Les groupements</h1><p class="page-lead">Retrouvez les coordonnées et les exercices de chaque groupement.</p></div>
+            <span class="count-pill">{{ groupements|length }} groupement{{ groupements|length > 1 ? 's' : '' }}</span>
+        </header>
+
+        {% if groupements is empty %}
+            <div class="empty-state"><span class="empty-icon" aria-hidden="true">GR</span><h2>Aucun groupement pour le moment</h2><p>Les groupements enregistrés apparaîtront ici.</p></div>
+        {% else %}
+            <div class="table-card"><div class="table-scroll">
+                <table>
+                    <thead><tr><th>Nom</th><th>Adresse</th><th>Téléphone</th><th>Exercices</th></tr></thead>
+                    <tbody>
+                        {% for groupement in groupements %}
+                            <tr><td class="strong-cell">{{ groupement.nom }}</td><td>{{ groupement.adresse }}</td><td>{{ groupement.tel }}</td><td><span class="number-chip">{{ groupement.exercices|length }}</span></td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div></div>
+        {% endif %}
+    </main>
+{% endblock %}

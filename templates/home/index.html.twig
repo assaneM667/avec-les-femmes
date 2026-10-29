@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil | Avec les femmes{% endblock %}
+
+{% block body %}
+    <main class="page-container dashboard-page">
+        <section class="welcome-panel">
+            <div>
+                <p class="eyebrow">Tableau de bord</p>
+                <h1>Bienvenue dans votre espace</h1>
+                <p class="page-lead">Retrouvez en un coup d’œil les informations de vos groupements.</p>
+            </div>
+            <div class="welcome-date">
+                <span class="date-label">Aujourd’hui</span>
+                <strong>{{ 'now'|date('d/m/Y') }}</strong>
+            </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Résumé de l’application">
+            <a class="stat-card stat-card-blue" href="{{ path('app_exercice_index') }}">
+                <span class="stat-icon" aria-hidden="true">EX</span>
+                <span class="stat-copy"><span class="stat-label">Exercices</span><strong class="stat-value">{{ exerciceCount }}</strong><span class="stat-note">Voir tous les exercices</span></span>
+                <span class="stat-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="stat-card stat-card-green" href="{{ path('app_exercice_index') }}">
+                <span class="stat-icon" aria-hidden="true">EN</span>
+                <span class="stat-copy"><span class="stat-label">En cours</span><strong class="stat-value">{{ exerciceEnCoursCount }}</strong><span class="stat-note">Exercices actifs</span></span>
+                <span class="stat-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="stat-card stat-card-orange" href="{{ path('app_groupement_index') }}">
+                <span class="stat-icon" aria-hidden="true">GR</span>
+                <span class="stat-copy"><span class="stat-label">Groupements</span><strong class="stat-value">{{ groupementCount }}</strong><span class="stat-note">Consulter les groupements</span></span>
+                <span class="stat-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="stat-card stat-card-purple" href="{{ path('app_membre_index') }}">
+                <span class="stat-icon" aria-hidden="true">MB</span>
+                <span class="stat-copy"><span class="stat-label">Membres</span><strong class="stat-value">{{ membreCount }}</strong><span class="stat-note">Consulter les membres</span></span>
+                <span class="stat-arrow" aria-hidden="true">↗</span>
+            </a>
+        </section>
+
+        <section class="dashboard-note">
+            <div class="note-mark" aria-hidden="true">✦</div>
+            <div>
+                <h2>Un espace pour avancer ensemble</h2>
+                <p>Utilisez le menu pour consulter les exercices, les groupements et les membres enregistrés.</p>
+            </div>
+        </section>
+    </main>
+{% endblock %}
