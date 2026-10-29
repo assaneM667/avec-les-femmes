@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un membre | Avec les femmes{% endblock %}
+
+{% block body %}
+    <main class="page-container">
+        <header class="page-heading">
+            <div>
+                <p class="eyebrow">Annuaire</p>
+                <h1>Ajouter un membre</h1>
+                <p class="page-lead">Renseignez les coordonnées de la personne à enregistrer.</p>
+            </div>
+        </header>
+
+        <section class="form-card">
+            {{ form_start(form, {'attr': {'class': 'member-form'}}) }}
+                <div class="form-grid">
+                    {{ form_row(form.nom) }}
+                    {{ form_row(form.tel) }}
+                    <div class="form-field form-field-wide">
+                        {{ form_row(form.adresse) }}
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a class="button-secondary" href="{{ path('app_membre_index') }}">Annuler</a>
+                    <button class="button-primary" type="submit">Enregistrer le membre</button>
+                </div>
+            {{ form_end(form) }}
+        </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Membres | Avec les femmes{% endblock %}
+
+{% block body %}
+    <main class="page-container">
+        <header class="page-heading">
+            <div>
+                <p class="eyebrow">Annuaire</p>
+                <h1>Les membres</h1>
+                <p class="page-lead">Consultez les coordonnées des membres enregistrés.</p>
+            </div>
+            <div class="heading-actions">
+                <span class="count-pill">{{ membres|length }} membre{{ membres|length > 1 ? 's' : '' }}</span>
+                <a class="button-primary" href="{{ path('app_membre_new') }}"><span aria-hidden="true">+</span> Ajouter un membre</a>
+            </div>
+        </header>
+
+        {% for message in app.flashes('success') %}
+            <div class="flash-message" role="status">{{ message }}</div>
+        {% endfor %}
+
+        {% if membres is empty %}
+            <div class="empty-state">
+                <span class="empty-icon" aria-hidden="true">MB</span>
+                <h2>Aucun membre pour le moment</h2>
+                <p>Ajoutez le premier membre pour commencer l’annuaire.</p>
+                <a class="button-primary empty-action" href="{{ path('app_membre_new') }}">Ajouter le premier membre</a>
+            </div>
+        {% else %}
+            <div class="table-card">
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr><th>Nom</th><th>Téléphone</th><th>Adresse</th></tr>
+                        </thead>
+                        <tbody>
+                            {% for membre in membres %}
+                                <tr>
+                                    <td class="strong-cell">{{ membre.nom }}</td>
+                                    <td>{{ membre.tel }}</td>
+                                    <td>{{ membre.adresse }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+    </main>
+{% endblock %}
